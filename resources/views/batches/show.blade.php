@@ -28,8 +28,19 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section py-4">
     <div class="container">
+      @php
+        $batchPhoto = 'images/batches/' . strtolower($batch->batch_code) . '.jpg';
+      @endphp
+
+      @if (file_exists(public_path($batchPhoto)))
+        <div class="mb-4">
+          <div class="card-feature p-0 overflow-hidden" style="max-height: 460px;">
+            <img src="{{ asset($batchPhoto) }}" alt="{{ $batch->ict_name }} Official Photo" class="w-100" style="object-fit: cover; max-height: 460px; display: block;">
+          </div>
+        </div>
+      @endif
       @if ($alumni->isEmpty())
         <div class="placeholder-panel text-center py-5">
           <div class="icon-badge mx-auto mb-3" style="width: 56px; height: 56px; font-size: 1.25rem;">
@@ -45,7 +56,7 @@
         <div class="row g-3">
           @foreach ($alumni as $member)
             <div class="col-12 col-md-6 col-lg-4">
-              <div class="card-feature h-100 d-flex flex-column justify-content-between p-3 border rounded bg-white">
+              <div class="card-feature h-100 d-flex flex-column justify-content-between p-3">
                 <div>
                   <div class="d-flex align-items-center gap-3 mb-3">
                     @if ($member->profile_photo_url)

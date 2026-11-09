@@ -18,9 +18,10 @@
 /public/storage
 /storage/*.key
 /storage/pail
-/storage/backups
-/bup-ict-alumni-phase1
 /vendor
 Homestead.json
 Homestead.yaml
 Thumbs.db
+/bup-ict-alumni-phase1/
+/storage/backups/
+database/database.sqlite

@@ -3,35 +3,38 @@
 @section('title', 'Alumni Network — BUP ICT Alumni Association')
 
 @section('content')
-  <section class="hero" style="padding: 3.5rem 0 3rem;">
+  <section class="hero hero-compact">
     <div class="container">
       <div class="eyebrow mb-2">Global & Professional Footprint</div>
-      <h1 class="mb-2">Alumni Network</h1>
-      <p class="lead mb-0">
-        Explore where BUP ICT graduates are making an impact — across global technology hubs,
-        industry leaders in Bangladesh, entrepreneurial ventures, and world-class research institutes.
+      <h1 class="mb-1">Alumni Network</h1>
+      <p class="text-muted-glass small mb-0">
+        Explore where BUP ICT graduates are making an impact — across global tech hubs, national leaders, entrepreneurial ventures, and research institutions.
       </p>
     </div>
   </section>
 
   <!-- Sticky In-Page Navigation Bar -->
-  <nav class="sticky-top bg-white border-bottom py-2 shadow-sm" style="top: 72px; z-index: 990;">
+  <nav class="sticky-top border-bottom py-2 shadow-sm" style="top: 60px; z-index: 990; background: rgba(8, 15, 29, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: rgba(255, 255, 255, 0.08) !important;">
     <div class="container">
       <div class="d-flex gap-2 overflow-auto py-1" style="white-space: nowrap; scrollbar-width: thin;">
         <a href="#alumni-abroad" class="btn btn-sm btn-outline-ink d-flex align-items-center gap-2">
-          <span>🌍 Alumni Abroad</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>Alumni Abroad</span>
           <span class="badge bg-brass text-white">{{ $abroad->count() }}</span>
         </a>
         <a href="#professionals-bangladesh" class="btn btn-sm btn-outline-ink d-flex align-items-center gap-2">
-          <span>🏢 Professionals in Bangladesh</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15.22"></line><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15.01"></line></svg>
+          <span>Professionals in Bangladesh</span>
           <span class="badge bg-brass text-white">{{ $professionals->count() }}</span>
         </a>
         <a href="#entrepreneurs-business" class="btn btn-sm btn-outline-ink d-flex align-items-center gap-2">
-          <span>🚀 Entrepreneurs & Business Owners</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path></svg>
+          <span>Entrepreneurs & Business Owners</span>
           <span class="badge bg-brass text-white">{{ $entrepreneurs->count() }}</span>
         </a>
         <a href="#higher-studies-research" class="btn btn-sm btn-outline-ink d-flex align-items-center gap-2">
-          <span>🎓 Higher Studies & Research</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          <span>Higher Studies & Research</span>
           <span class="badge bg-brass text-white">{{ $researchers->count() }}</span>
         </a>
       </div>
@@ -54,9 +57,13 @@
       </div>
 
       @if($abroad->isEmpty())
-        <div class="placeholder-panel py-4">
-          <h3 class="h6 mb-2">No alumni abroad listed yet</h3>
-          <p class="small text-muted-slate mb-0">Graduates who specify an international location in their profile will appear here.</p>
+        <div class="placeholder-panel py-4 text-center">
+          <div class="empty-state-icon mx-auto mb-2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </div>
+          <h3 class="h6 mb-1 fw-bold">No alumni abroad listed yet</h3>
+          <p class="small text-muted-slate mb-3">Graduates who specify an international location in their profile will appear here.</p>
+          <a href="{{ route('register') }}" class="btn btn-outline-brass btn-sm">Be the first to add your profile</a>
         </div>
       @else
         <div class="row g-4">
@@ -149,9 +156,13 @@
       </div>
 
       @if($professionals->isEmpty())
-        <div class="placeholder-panel py-4">
-          <h3 class="h6 mb-2">No professionals listed yet</h3>
-          <p class="small text-muted-slate mb-0">Employed alumni working in Bangladesh will appear here as profiles are updated.</p>
+        <div class="placeholder-panel py-4 text-center">
+          <div class="empty-state-icon mx-auto mb-2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15.22"></line></svg>
+          </div>
+          <h3 class="h6 mb-1 fw-bold">No professionals listed yet</h3>
+          <p class="small text-muted-slate mb-3">Employed alumni working in Bangladesh will appear here as profiles are updated.</p>
+          <a href="{{ route('register') }}" class="btn btn-outline-brass btn-sm">Join the Network</a>
         </div>
       @else
         <div class="row g-4">
@@ -234,9 +245,13 @@
       </div>
 
       @if($entrepreneurs->isEmpty())
-        <div class="placeholder-panel py-4">
-          <h3 class="h6 mb-2">No entrepreneurs listed yet</h3>
-          <p class="small text-muted-slate mb-0">Alumni who are verified founders, CEOs, or business owners will appear here.</p>
+        <div class="placeholder-panel py-4 text-center">
+          <div class="empty-state-icon mx-auto mb-2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path></svg>
+          </div>
+          <h3 class="h6 mb-1 fw-bold">No entrepreneurs listed yet</h3>
+          <p class="small text-muted-slate mb-3">Alumni who are verified founders, CEOs, or business owners will appear here.</p>
+          <a href="{{ route('register') }}" class="btn btn-outline-brass btn-sm">List Your Venture</a>
         </div>
       @else
         <div class="row g-4">
@@ -318,9 +333,13 @@
       </div>
 
       @if($researchers->isEmpty())
-        <div class="placeholder-panel py-4">
-          <h3 class="h6 mb-2">No higher studies or research records listed yet</h3>
-          <p class="small text-muted-slate mb-0">Graduates pursuing graduate studies, research fellowships, or academic appointments will appear here.</p>
+        <div class="placeholder-panel py-4 text-center">
+          <div class="empty-state-icon mx-auto mb-2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          </div>
+          <h3 class="h6 mb-1 fw-bold">No higher studies or research records listed yet</h3>
+          <p class="small text-muted-slate mb-3">Graduates pursuing graduate studies, research fellowships, or academic appointments will appear here.</p>
+          <a href="{{ route('register') }}" class="btn btn-outline-brass btn-sm">Add Academic Profile</a>
         </div>
       @else
         <div class="row g-4">

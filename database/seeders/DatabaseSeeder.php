@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         // where APP_ENV is production. firstOrCreate keeps this safe to
         // re-run (php artisan db:seed) without a duplicate-email error.
         if (! app()->environment('production')) {
-            User::factory()->firstOrCreate(
+            User::firstOrCreate(
                 ['email' => 'admin@example.test'],
-                ['name' => 'Development Admin']
+                ['name' => 'Development Admin', 'password' => bcrypt('password')]
             );
 
             $batch = \App\Models\Batch::first();
