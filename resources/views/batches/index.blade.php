@@ -12,7 +12,7 @@
     </div>
   </section>
 
-  <section class="section py-4">
+  <section class="section py-4 section-highlight">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <span class="small text-muted-slate">All graduating cohorts &middot; <strong>{{ $batches->count() }}</strong> active generations</span>
@@ -22,7 +22,7 @@
         @forelse ($batches as $batch)
           <div class="col-6 col-md-4 col-lg-3">
             <a href="{{ route('batches.show', $batch) }}" class="text-decoration-none text-reset d-block h-100">
-              <div class="card-feature h-100 d-flex flex-column justify-content-between p-3 position-relative {{ $batch->alumni_count == 0 ? 'opacity-90' : '' }}">
+              <div class="card-feature h-100 d-flex flex-column justify-content-between p-3 position-relative">
                 <div>
                   {{-- Top metadata: Batch Code and Alumni Count --}}
                   <div class="d-flex justify-content-between align-items-center mb-3">

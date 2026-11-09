@@ -28,7 +28,7 @@
     </div>
   </section>
 
-  <section class="section py-4">
+  <section class="section py-4 section-highlight">
     <div class="container">
       @php
         $batchPhoto = 'images/batches/' . strtolower($batch->batch_code) . '.jpg';

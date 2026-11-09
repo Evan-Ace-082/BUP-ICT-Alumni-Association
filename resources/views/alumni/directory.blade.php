@@ -12,7 +12,7 @@
     </div>
   </section>
 
-  <section class="section py-4">
+  <section class="section py-4 section-highlight">
     <div class="container">
       {{-- Primary & Collapsible Filter Bar --}}
       @php

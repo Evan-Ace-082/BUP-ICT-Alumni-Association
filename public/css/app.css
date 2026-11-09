@@ -944,18 +944,28 @@ a:hover {
   padding: 5rem 0;
 }
 
+/* Luminous Highlighted Content Section */
+.section-highlight {
+  position: relative;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% 20%, rgba(36, 62, 110, 0.55) 0%, rgba(18, 32, 60, 0.25) 65%, transparent 100%),
+    linear-gradient(180deg, rgba(22, 38, 72, 0.35) 0%, rgba(10, 18, 34, 0.15) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .card-feature {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  background: rgba(13, 22, 40, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: linear-gradient(160deg, rgba(26, 44, 78, 0.88) 0%, rgba(16, 28, 52, 0.88) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 36px -6px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.04);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
-  color: #cbd5e1;
+  color: #e2e8f0;
 }
 
 .card-feature::before {
@@ -970,10 +980,10 @@ a:hover {
 }
 
 .card-feature:hover {
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.6), 0 0 24px rgba(198, 138, 58, 0.16);
+  box-shadow: 0 18px 45px -8px rgba(0, 0, 0, 0.65), 0 0 30px rgba(198, 138, 58, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.28);
   transform: translateY(-4px);
-  border-color: rgba(198, 138, 58, 0.45);
-  background: rgba(18, 30, 56, 0.90);
+  border-color: rgba(217, 163, 92, 0.65);
+  background: linear-gradient(160deg, rgba(34, 58, 102, 0.95) 0%, rgba(20, 36, 68, 0.95) 100%);
 }
 
 .card-feature:hover::before {
@@ -1161,21 +1171,22 @@ a:hover {
 }
 
 .badge.bg-parchment {
-  background-color: rgba(198, 138, 58, 0.16) !important;
-  color: var(--brass-300) !important;
-  border: 1px solid rgba(198, 138, 58, 0.35) !important;
+  background-color: rgba(198, 138, 58, 0.24) !important;
+  color: #f7d299 !important;
+  border: 1px solid rgba(198, 138, 58, 0.5) !important;
+  font-weight: 600;
 }
 
 .badge.bg-light {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  color: #cbd5e1 !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .badge.bg-ink {
-  background-color: rgba(8, 15, 29, 0.9) !important;
+  background-color: rgba(12, 22, 42, 0.95) !important;
   color: #ffffff !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
 }
 
 .avatar-initials {

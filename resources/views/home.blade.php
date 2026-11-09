@@ -372,7 +372,7 @@
   </section>
 
   {{-- Explore the Association Services --}}
-  <section class="section">
+  <section class="section section-highlight">
     <div class="container">
       <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
         <div>
