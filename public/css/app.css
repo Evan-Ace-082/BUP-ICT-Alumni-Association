@@ -1658,6 +1658,205 @@ nav[role="navigation"] svg,
   color: #9c671b;
 }
 
+/* "Building the Future." High Contrast Text Gradient */
+[data-theme="light"] .text-gradient-brass {
+  background: linear-gradient(135deg, #a66a1a 0%, #683d04 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 800;
+  display: inline-block;
+  text-shadow: none;
+}
+
+/* "Browse All Batches" button in light mode */
+[data-theme="light"] .btn-outline-glass {
+  background: #faf4e8 !important;
+  border: 1.5px solid #d5c4a8 !important;
+  color: #1e170e !important;
+  box-shadow: 0 2px 8px rgba(78, 56, 24, 0.06);
+}
+
+[data-theme="light"] .btn-outline-glass:hover {
+  background: #f0e6d2 !important;
+  border-color: #9c671b !important;
+  color: #9c671b !important;
+  box-shadow: 0 4px 14px rgba(156, 103, 27, 0.15);
+}
+
+/* Generation Ribbon (Batch Continuity Chain) in Light Mode */
+[data-theme="light"] .generation-ribbon-wrapper {
+  background: #faf5eb;
+  border: 1px solid #ded2be;
+  box-shadow: 0 6px 20px rgba(78, 56, 24, 0.06);
+}
+
+[data-theme="light"] .ribbon-label {
+  color: #9c671b;
+  font-weight: 700;
+}
+
+[data-theme="light"] .generation-ribbon-wrapper .text-muted-glass {
+  color: #70614e !important;
+}
+
+[data-theme="light"] .generation-ribbon::-webkit-scrollbar-thumb {
+  background: #d4c4a8;
+}
+
+[data-theme="light"] .ribbon-marker {
+  background: #fffdf9;
+  border: 1px solid #dccbb2;
+  box-shadow: 0 2px 6px rgba(78, 56, 24, 0.04);
+}
+
+[data-theme="light"] .ribbon-marker:hover {
+  background: #ffffff;
+  border-color: #9c671b;
+  box-shadow: 0 6px 18px rgba(156, 103, 27, 0.18);
+  transform: translateY(-3px);
+}
+
+[data-theme="light"] .ribbon-marker .code {
+  color: #9c671b;
+  font-weight: 700;
+}
+
+[data-theme="light"] .ribbon-marker .name {
+  color: #1e170e;
+  font-weight: 600;
+}
+
+[data-theme="light"] .ribbon-marker.is-next {
+  border-color: #d4c4a8;
+  background: rgba(222, 210, 190, 0.35);
+}
+
+[data-theme="light"] .ribbon-marker.is-next .code,
+[data-theme="light"] .ribbon-marker.is-next .name {
+  color: #8c7b67;
+}
+
+/* Batch Carousel Section in Light Mode (Warm Linen & Parchment) */
+[data-theme="light"] .batch-carousel-section {
+  background: linear-gradient(180deg, #f3ebde 0%, #ece1cf 100%);
+  border-top: 1px solid #ded1bc;
+  border-bottom: 1px solid #ded1bc;
+}
+
+[data-theme="light"] .batch-carousel-section .section-eyebrow {
+  color: #9c671b;
+}
+
+[data-theme="light"] .batch-carousel-section .section-title,
+[data-theme="light"] .batch-carousel-section h2 {
+  color: #1e170e !important;
+}
+
+[data-theme="light"] .carousel-nav-btn {
+  background: #faf5eb;
+  border: 1.5px solid #d5c4a8;
+  color: #1e170e;
+  box-shadow: 0 2px 8px rgba(78, 56, 24, 0.06);
+}
+
+[data-theme="light"] .carousel-nav-btn:hover {
+  background: #9c671b;
+  border-color: #9c671b;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(156, 103, 27, 0.25);
+}
+
+[data-theme="light"] .batch-showcase-frame {
+  border: 1.5px solid #d5c4a8;
+  box-shadow: 0 20px 45px rgba(78, 56, 24, 0.12);
+  background: #ede3cf;
+}
+
+[data-theme="light"] .batch-pill-indicators {
+  background: rgba(250, 245, 235, 0.94);
+  border: 1px solid #d5c4a8;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(78, 56, 24, 0.08);
+}
+
+[data-theme="light"] .batch-tab-pill {
+  color: #635746;
+}
+
+[data-theme="light"] .batch-tab-pill .pill-dot {
+  background: #b5a48e;
+}
+
+[data-theme="light"] .batch-tab-pill:hover {
+  color: #1e170e;
+  background: rgba(198, 138, 58, 0.12);
+}
+
+[data-theme="light"] .batch-tab-pill.active {
+  background: #9c671b;
+  color: #ffffff;
+  border-color: #9c671b;
+  box-shadow: 0 2px 10px rgba(156, 103, 27, 0.35);
+}
+
+[data-theme="light"] .batch-tab-pill.active .pill-dot {
+  background: #ffffff;
+}
+
+[data-theme="light"] .batch-placeholder-slide {
+  background:
+    radial-gradient(ellipse at center, rgba(198, 138, 58, 0.15), transparent 60%),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(156, 103, 27, 0.04) 0px,
+      rgba(156, 103, 27, 0.04) 1px,
+      transparent 1px,
+      transparent 14px
+    ),
+    linear-gradient(180deg, #ede3cf 0%, #faf5ec 100%);
+}
+
+[data-theme="light"] .batch-placeholder-badge {
+  background: #eee4d1;
+  color: #8c5717;
+  border: 1px solid #dccbb2;
+}
+
+[data-theme="light"] .batch-placeholder-code {
+  color: rgba(156, 103, 27, 0.28);
+}
+
+[data-theme="light"] .batch-placeholder-label {
+  color: #70614e;
+}
+
+[data-theme="light"] .batch-caption-card {
+  background: rgba(254, 252, 248, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid #ded1bc;
+  box-shadow: 0 10px 30px rgba(78, 56, 24, 0.18);
+  color: #1e170e;
+}
+
+[data-theme="light"] .batch-caption-pill {
+  color: #9c671b;
+}
+
+[data-theme="light"] .batch-caption-card h3,
+[data-theme="light"] .batch-caption-title {
+  color: #1e170e !important;
+}
+
+[data-theme="light"] .batch-caption-card p,
+[data-theme="light"] .batch-caption-meta {
+  color: #5c4e3b !important;
+}
+
+[data-theme="light"] .batch-caption-card a {
+  color: #9c671b !important;
+}
+
 /* Light Mode Highlight Section (Warm Cream Linen) */
 [data-theme="light"] .section-highlight {
   background:
@@ -1817,16 +2016,67 @@ nav[role="navigation"] svg,
   border: 1px solid rgba(198, 138, 58, 0.38);
 }
 
+/* Light Mode CTA Banner Card */
+[data-theme="light"] section.bg-ink {
+  background-color: #f7f3eb !important;
+}
+
+[data-theme="light"] .cta-banner-card {
+  background:
+    radial-gradient(ellipse at center, rgba(198, 138, 58, 0.18), transparent 70%),
+    linear-gradient(180deg, #ede2cf 0%, #f6efe1 100%);
+  border: 1.5px solid #d5c4a8;
+  box-shadow: 0 16px 40px rgba(78, 56, 24, 0.09);
+  color: #1e170e;
+}
+
+[data-theme="light"] .cta-banner-card h2,
+[data-theme="light"] .cta-banner-card .text-white {
+  color: #1e170e !important;
+}
+
+[data-theme="light"] .cta-banner-card p,
+[data-theme="light"] .cta-banner-card .text-muted-glass {
+  color: #5c4e3b !important;
+}
+
+[data-theme="light"] .cta-banner-card .live-pill {
+  background: rgba(198, 138, 58, 0.12);
+  border: 1px solid rgba(198, 138, 58, 0.35);
+  color: #7b4c09;
+}
+
+/* Light Mode Site Footer (Warm Linen & Parchment) */
 [data-theme="light"] .site-footer {
-  background-color: #0b1424;
-  border-top: 2px solid rgba(198, 138, 58, 0.45);
-  color: rgba(255, 255, 255, 0.72);
+  background-color: #ede4d1;
+  border-top: 1px solid #ded1bc;
+  color: #524433;
+}
+
+[data-theme="light"] .site-footer .footer-brand {
+  color: #1e170e;
+}
+
+[data-theme="light"] .site-footer p {
+  color: #5c4e3b;
+}
+
+[data-theme="light"] .site-footer h6,
+[data-theme="light"] .site-footer .text-white-50 {
+  color: #8c5717 !important;
+  font-weight: 700;
 }
 
 [data-theme="light"] .site-footer a {
-  color: #e5b36a !important;
+  color: #6d4207 !important;
+  font-weight: 600;
 }
 
 [data-theme="light"] .site-footer a:hover {
-  color: #ffffff !important;
+  color: #1e170e !important;
+  text-decoration: underline;
+}
+
+[data-theme="light"] .site-footer hr {
+  border-color: #d8c7ad !important;
 }
