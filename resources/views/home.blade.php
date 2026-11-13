@@ -140,6 +140,18 @@
             <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="7" class="batch-tab-pill" aria-label="B08">
               <span class="pill-dot"></span> B08
             </button>
+            <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="8" class="batch-tab-pill placeholder-pill" aria-label="B09">
+              <span class="pill-dot"></span> B09
+            </button>
+            <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="9" class="batch-tab-pill placeholder-pill" aria-label="B10">
+              <span class="pill-dot"></span> B10
+            </button>
+            <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="10" class="batch-tab-pill placeholder-pill" aria-label="B11">
+              <span class="pill-dot"></span> B11
+            </button>
+            <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="11" class="batch-tab-pill placeholder-pill" aria-label="B12">
+              <span class="pill-dot"></span> B12
+            </button>
           </div>
 
           <div class="carousel-inner">
@@ -154,7 +166,10 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 01</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 01</h3>
-                  <small class="text-muted-glass">Department Pioneer Generation &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -170,9 +185,15 @@
               </div>
               <div class="carousel-caption batch-caption">
                 <div class="batch-caption-card">
-                  <div class="batch-caption-pill">Pioneer Generation</div>
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="batch-caption-pill">Pioneer Generation</span>
+                    <span class="badge bg-brass-subtle text-brass">Batch 02</span>
+                  </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 02</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -187,7 +208,10 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 03</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 03</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -202,7 +226,10 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 04</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 04</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -217,7 +244,10 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 05</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 05</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -232,7 +262,10 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 06</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 06</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -247,7 +280,10 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 07</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 07</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -262,7 +298,106 @@
                     <span class="badge bg-brass-subtle text-brass">Batch 08</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 08</h3>
-                  <small class="text-muted-glass">Department of ICT &middot; BUP</small>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {{-- B09 Placeholder --}}
+            <div class="carousel-item">
+              <div class="batch-placeholder-slide">
+                <div class="batch-placeholder-inner">
+                  <div class="batch-placeholder-badge">BATCH 09</div>
+                  <span class="batch-placeholder-code">B09</span>
+                  <span class="batch-placeholder-label">Official Batch Photo Coming Soon</span>
+                </div>
+              </div>
+              <div class="carousel-caption batch-caption">
+                <div class="batch-caption-card">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="batch-caption-pill">Cohort 23</span>
+                    <span class="badge bg-brass-subtle text-brass">Batch 09</span>
+                  </div>
+                  <h3 class="batch-caption-name mb-0">ICT Batch 09</h3>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {{-- B10 Placeholder --}}
+            <div class="carousel-item">
+              <div class="batch-placeholder-slide">
+                <div class="batch-placeholder-inner">
+                  <div class="batch-placeholder-badge">BATCH 10</div>
+                  <span class="batch-placeholder-code">B10</span>
+                  <span class="batch-placeholder-label">Official Batch Photo Coming Soon</span>
+                </div>
+              </div>
+              <div class="carousel-caption batch-caption">
+                <div class="batch-caption-card">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="batch-caption-pill">Cohort 24</span>
+                    <span class="badge bg-brass-subtle text-brass">Batch 10</span>
+                  </div>
+                  <h3 class="batch-caption-name mb-0">ICT Batch 10</h3>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {{-- B11 Placeholder --}}
+            <div class="carousel-item">
+              <div class="batch-placeholder-slide">
+                <div class="batch-placeholder-inner">
+                  <div class="batch-placeholder-badge">BATCH 11</div>
+                  <span class="batch-placeholder-code">B11</span>
+                  <span class="batch-placeholder-label">Official Batch Photo Coming Soon</span>
+                </div>
+              </div>
+              <div class="carousel-caption batch-caption">
+                <div class="batch-caption-card">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="batch-caption-pill">Cohort 25</span>
+                    <span class="badge bg-brass-subtle text-brass">Batch 11</span>
+                  </div>
+                  <h3 class="batch-caption-name mb-0">ICT Batch 11</h3>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {{-- B12 Placeholder --}}
+            <div class="carousel-item">
+              <div class="batch-placeholder-slide">
+                <div class="batch-placeholder-inner">
+                  <div class="batch-placeholder-badge">BATCH 12</div>
+                  <span class="batch-placeholder-code">B12</span>
+                  <span class="batch-placeholder-label">Official Batch Photo Coming Soon</span>
+                </div>
+              </div>
+              <div class="carousel-caption batch-caption">
+                <div class="batch-caption-card">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <span class="batch-caption-pill">Cohort 26</span>
+                    <span class="badge bg-brass-subtle text-brass">Batch 12</span>
+                  </div>
+                  <h3 class="batch-caption-name mb-0">ICT Batch 12</h3>
+                  <div class="batch-caption-dept">
+                    <div class="dept-name">Department of Information and Communication Technology</div>
+                    <div class="inst-name">Bangladesh University of Professionals (BUP)</div>
+                  </div>
                 </div>
               </div>
             </div>
