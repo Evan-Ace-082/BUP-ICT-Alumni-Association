@@ -100,7 +100,18 @@
         </div>
       </div>
 
-      <div class="batch-showcase-frame">
+      <div class="batch-showcase-frame position-relative">
+        {{-- Click to Zoom & Pan Indicator Badge --}}
+        <button type="button" class="batch-zoom-trigger-badge" id="batchZoomTriggerBadge" title="Click to zoom and pan this batch photo" aria-label="Zoom in on current batch photograph">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <span>Zoom &amp; Pan Photo</span>
+        </button>
+
         <div id="batchCarousel" class="carousel carousel-fade slide batch-carousel" data-bs-ride="carousel" data-bs-interval="2000" data-bs-touch="true">
 
           {{-- Modern Batch Pill Indicators --}}
@@ -471,6 +482,73 @@
     </div>
   </section>
 
+  {{-- Interactive Fullscreen Batch Photo Zoom & Pan Modal --}}
+  <div id="batchPhotoZoomModal" class="batch-zoom-modal" aria-hidden="true" role="dialog" aria-label="Batch Photo Zoom Viewer">
+    <div class="batch-zoom-backdrop" id="batchZoomBackdrop"></div>
+
+    {{-- Top Header Bar --}}
+    <div class="batch-zoom-header">
+      <div class="batch-zoom-title-area">
+        <span class="batch-zoom-badge" id="batchZoomBadge">Batch 01</span>
+        <h3 class="batch-zoom-title mb-0" id="batchZoomTitle">ICT Batch 01</h3>
+        <span class="batch-zoom-subtext d-none d-sm-inline" id="batchZoomSubtext">অরিত্র ১৬</span>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <button type="button" class="batch-zoom-close-btn" id="batchZoomCloseBtn" title="Close viewer (Esc)" aria-label="Close viewer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {{-- Center Viewport --}}
+    <div class="batch-zoom-viewport" id="batchZoomViewport">
+      <div class="batch-zoom-stage" id="batchZoomStage">
+        <img src="" alt="" id="batchZoomImg" class="batch-zoom-img" draggable="false">
+      </div>
+    </div>
+
+    {{-- Bottom Control Toolbar --}}
+    <div class="batch-zoom-toolbar" role="toolbar" aria-label="Zoom and pan controls">
+      <button type="button" class="batch-zoom-tool-btn" id="batchZoomOutBtn" title="Zoom Out (-)" aria-label="Zoom Out">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+      </button>
+
+      <span class="batch-zoom-percent" id="batchZoomPercent" title="Current zoom level">100%</span>
+
+      <button type="button" class="batch-zoom-tool-btn" id="batchZoomInBtn" title="Zoom In (+)" aria-label="Zoom In">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          <line x1="11" y1="8" x2="11" y2="14"></line>
+          <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+      </button>
+
+      <div class="batch-zoom-divider"></div>
+
+      <button type="button" class="batch-zoom-tool-btn" id="batchZoomResetBtn" title="Reset to original size (R or 0)" aria-label="Reset zoom">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        <span class="d-none d-md-inline ms-1 small fw-semibold">Reset</span>
+      </button>
+    </div>
+
+    {{-- Interaction Hint --}}
+    <div class="batch-zoom-hint d-none d-sm-block">
+      Scroll / Pinch to zoom &middot; Click &amp; drag to pan &middot; Double-click to toggle &middot; Esc to close
+    </div>
+  </div>
+
 @endsection
 
 @push('scripts')
@@ -480,6 +558,17 @@
     if (!carouselEl) return;
 
     const pills = carouselEl.querySelectorAll('.batch-pill-indicators .batch-tab-pill');
+    const triggerBadge = document.getElementById('batchZoomTriggerBadge');
+
+    function updateTriggerBadgeVisibility(activeItem) {
+      if (!triggerBadge) return;
+      const hasImage = activeItem && activeItem.querySelector('.batch-slide-img');
+      triggerBadge.style.display = hasImage ? 'inline-flex' : 'none';
+    }
+
+    // Initial badge visibility check
+    const initialActive = carouselEl.querySelector('.carousel-item.active');
+    updateTriggerBadgeVisibility(initialActive);
 
     carouselEl.addEventListener('slide.bs.carousel', function (event) {
       const nextIndex = event.to;
@@ -492,6 +581,293 @@
           pill.removeAttribute('aria-current');
         }
       });
+
+      const items = carouselEl.querySelectorAll('.carousel-item');
+      if (items[nextIndex]) {
+        updateTriggerBadgeVisibility(items[nextIndex]);
+      }
+    });
+
+    // Zoom & Pan Viewer Logic
+    const modal = document.getElementById('batchPhotoZoomModal');
+    if (!modal) return;
+
+    const backdrop = document.getElementById('batchZoomBackdrop');
+    const closeBtn = document.getElementById('batchZoomCloseBtn');
+    const viewport = document.getElementById('batchZoomViewport');
+    const stage = document.getElementById('batchZoomStage');
+    const modalImg = document.getElementById('batchZoomImg');
+    const modalBadge = document.getElementById('batchZoomBadge');
+    const modalTitle = document.getElementById('batchZoomTitle');
+    const modalSubtext = document.getElementById('batchZoomSubtext');
+    const zoomInBtn = document.getElementById('batchZoomInBtn');
+    const zoomOutBtn = document.getElementById('batchZoomOutBtn');
+    const resetBtn = document.getElementById('batchZoomResetBtn');
+    const zoomPercentLabel = document.getElementById('batchZoomPercent');
+
+    let currentScale = 1;
+    let currentPanX = 0;
+    let currentPanY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let initialPinchDistance = null;
+    let initialPinchScale = 1;
+    let carouselInstance = null;
+
+    const minScale = 1;
+    const maxScale = 5;
+
+    function clampPan() {
+      if (currentScale <= 1.05) {
+        currentPanX = 0;
+        currentPanY = 0;
+        return;
+      }
+      const vpWidth = viewport.clientWidth;
+      const vpHeight = viewport.clientHeight;
+      const imgWidth = (modalImg.offsetWidth || (vpWidth * 0.9)) * currentScale;
+      const imgHeight = (modalImg.offsetHeight || (vpHeight * 0.75)) * currentScale;
+
+      const maxPanX = Math.max(0, (imgWidth - vpWidth) / 2 + 100);
+      const maxPanY = Math.max(0, (imgHeight - vpHeight) / 2 + 100);
+
+      currentPanX = Math.min(Math.max(-maxPanX, currentPanX), maxPanX);
+      currentPanY = Math.min(Math.max(-maxPanY, currentPanY), maxPanY);
+    }
+
+    function applyTransform(animated = false) {
+      stage.style.transition = animated ? 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
+      stage.style.transform = `translate3d(${currentPanX}px, ${currentPanY}px, 0) scale(${currentScale})`;
+      zoomPercentLabel.textContent = `${Math.round(currentScale * 100)}%`;
+
+      if (currentScale > 1.05) {
+        viewport.style.cursor = isDragging ? 'grabbing' : 'grab';
+      } else {
+        viewport.style.cursor = 'default';
+      }
+    }
+
+    function zoomBy(step, focalPoint = null) {
+      const newScale = Math.min(Math.max(minScale, currentScale + step), maxScale);
+      if (newScale === currentScale) return;
+
+      if (focalPoint && currentScale > 0) {
+        const scaleRatio = newScale / currentScale;
+        currentPanX = focalPoint.x - (focalPoint.x - currentPanX) * scaleRatio;
+        currentPanY = focalPoint.y - (focalPoint.y - currentPanY) * scaleRatio;
+      } else if (newScale <= 1.05) {
+        currentPanX = 0;
+        currentPanY = 0;
+      }
+
+      currentScale = newScale;
+      clampPan();
+      applyTransform(true);
+    }
+
+    function openZoomViewer(imgEl) {
+      if (!imgEl || !imgEl.src) return;
+
+      const carouselItem = imgEl.closest('.carousel-item');
+      const badgeText = carouselItem?.querySelector('.badge')?.textContent?.trim() || 'Batch Photo';
+      const titleText = carouselItem?.querySelector('.batch-caption-name')?.textContent?.trim() || 'ICT Batch Photo';
+      const subtext = carouselItem?.querySelector('.batch-caption-pill')?.textContent?.trim() || '';
+
+      modalBadge.textContent = badgeText;
+      modalTitle.textContent = titleText;
+      modalSubtext.textContent = subtext;
+      modalImg.src = imgEl.src;
+      modalImg.alt = imgEl.alt || titleText;
+
+      currentScale = 1;
+      currentPanX = 0;
+      currentPanY = 0;
+      applyTransform(false);
+
+      if (typeof bootstrap !== 'undefined' && bootstrap.Carousel) {
+        carouselInstance = bootstrap.Carousel.getInstance(carouselEl);
+        if (carouselInstance) {
+          carouselInstance.pause();
+        }
+      }
+
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeZoomViewer() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+
+      if (carouselInstance) {
+        carouselInstance.cycle();
+      }
+
+      currentScale = 1;
+      currentPanX = 0;
+      currentPanY = 0;
+      applyTransform(false);
+    }
+
+    // Attach click events to all batch slide images
+    carouselEl.querySelectorAll('.batch-slide-img').forEach(function (img) {
+      img.addEventListener('click', function (e) {
+        e.preventDefault();
+        openZoomViewer(this);
+      });
+    });
+
+    // Attach click to the trigger badge
+    if (triggerBadge) {
+      triggerBadge.addEventListener('click', function (e) {
+        e.preventDefault();
+        const activeImg = carouselEl.querySelector('.carousel-item.active .batch-slide-img');
+        if (activeImg) {
+          openZoomViewer(activeImg);
+        }
+      });
+    }
+
+    // Toolbar buttons
+    zoomInBtn.addEventListener('click', () => zoomBy(0.5));
+    zoomOutBtn.addEventListener('click', () => zoomBy(-0.5));
+    resetBtn.addEventListener('click', () => {
+      currentScale = 1;
+      currentPanX = 0;
+      currentPanY = 0;
+      applyTransform(true);
+    });
+
+    closeBtn.addEventListener('click', closeZoomViewer);
+    backdrop.addEventListener('click', closeZoomViewer);
+
+    // Mouse wheel zoom towards cursor
+    viewport.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      const rect = viewport.getBoundingClientRect();
+      const focalX = e.clientX - rect.left - rect.width / 2;
+      const focalY = e.clientY - rect.top - rect.height / 2;
+      const delta = e.deltaY < 0 ? 0.35 : -0.35;
+      zoomBy(delta, { x: focalX, y: focalY });
+    }, { passive: false });
+
+    // Desktop Click & Drag to Pan
+    viewport.addEventListener('mousedown', function (e) {
+      if (e.button !== 0) return;
+      if (currentScale <= 1.05) return;
+
+      isDragging = true;
+      dragStartX = e.clientX - currentPanX;
+      dragStartY = e.clientY - currentPanY;
+      viewport.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      currentPanX = e.clientX - dragStartX;
+      currentPanY = e.clientY - dragStartY;
+      clampPan();
+      applyTransform(false);
+    });
+
+    window.addEventListener('mouseup', function () {
+      if (isDragging) {
+        isDragging = false;
+        viewport.style.cursor = currentScale > 1.05 ? 'grab' : 'default';
+      }
+    });
+
+    // Double-click toggle (1x <-> 2.5x)
+    viewport.addEventListener('dblclick', function (e) {
+      if (currentScale > 1.2) {
+        currentScale = 1;
+        currentPanX = 0;
+        currentPanY = 0;
+        applyTransform(true);
+      } else {
+        const rect = viewport.getBoundingClientRect();
+        const focalX = e.clientX - rect.left - rect.width / 2;
+        const focalY = e.clientY - rect.top - rect.height / 2;
+        zoomBy(1.5, { x: focalX, y: focalY });
+      }
+    });
+
+    // Mobile / Tablet Touch Pinch & Pan
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    viewport.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 1) {
+        if (currentScale > 1.05) {
+          isDragging = true;
+          touchStartX = e.touches[0].clientX - currentPanX;
+          touchStartY = e.touches[0].clientY - currentPanY;
+        }
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        initialPinchDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        initialPinchScale = currentScale;
+      }
+    }, { passive: false });
+
+    viewport.addEventListener('touchmove', function (e) {
+      if (e.touches.length === 1 && isDragging) {
+        e.preventDefault();
+        currentPanX = e.touches[0].clientX - touchStartX;
+        currentPanY = e.touches[0].clientY - touchStartY;
+        clampPan();
+        applyTransform(false);
+      } else if (e.touches.length === 2 && initialPinchDistance) {
+        e.preventDefault();
+        const currentDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const pinchRatio = currentDistance / initialPinchDistance;
+        currentScale = Math.min(Math.max(minScale, initialPinchScale * pinchRatio), maxScale);
+        clampPan();
+        applyTransform(false);
+      }
+    }, { passive: false });
+
+    viewport.addEventListener('touchend', function (e) {
+      if (e.touches.length < 2) {
+        initialPinchDistance = null;
+      }
+      if (e.touches.length === 0) {
+        isDragging = false;
+        if (currentScale <= 1.05) {
+          currentPanX = 0;
+          currentPanY = 0;
+          applyTransform(true);
+        }
+      }
+    });
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', function (e) {
+      if (!modal.classList.contains('active')) return;
+
+      if (e.key === 'Escape') {
+        closeZoomViewer();
+      } else if (e.key === '+' || e.key === '=') {
+        zoomBy(0.5);
+      } else if (e.key === '-' || e.key === '_') {
+        zoomBy(-0.5);
+      } else if (e.key === '0' || e.key.toLowerCase() === 'r') {
+        currentScale = 1;
+        currentPanX = 0;
+        currentPanY = 0;
+        applyTransform(true);
+      }
     });
   });
 </script>
