@@ -119,7 +119,7 @@
             <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="0" class="active batch-tab-pill" aria-label="B01">
               <span class="pill-dot"></span> B01
             </button>
-            <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="1" class="batch-tab-pill placeholder-pill" aria-label="B02">
+            <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="1" class="batch-tab-pill" aria-label="B02">
               <span class="pill-dot"></span> B02
             </button>
             <button type="button" data-bs-target="#batchCarousel" data-bs-slide-to="2" class="batch-tab-pill" aria-label="B03">
@@ -174,19 +174,13 @@
               </div>
             </div>
 
-            {{-- B02 Placeholder --}}
+            {{-- B02 Live --}}
             <div class="carousel-item">
-              <div class="batch-placeholder-slide">
-                <div class="batch-placeholder-inner">
-                  <div class="batch-placeholder-badge">BATCH 02</div>
-                  <span class="batch-placeholder-code">B02</span>
-                  <span class="batch-placeholder-label">Official Batch Photo Coming Soon</span>
-                </div>
-              </div>
+              <img src="{{ asset('images/batches/b02.jpg') }}" class="batch-slide-img" alt="ICT Batch 02 graduation photo">
               <div class="carousel-caption batch-caption">
                 <div class="batch-caption-card">
                   <div class="d-flex align-items-center gap-2 mb-1">
-                    <span class="batch-caption-pill">Pioneer Generation</span>
+                    <span class="batch-caption-pill">আধীশ ১৬</span>
                     <span class="badge bg-brass-subtle text-brass">Batch 02</span>
                   </div>
                   <h3 class="batch-caption-name mb-0">ICT Batch 02</h3>
