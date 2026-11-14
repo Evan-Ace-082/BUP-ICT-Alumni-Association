@@ -238,6 +238,28 @@ class AlumniImportServiceTest extends TestCase
         $this->assertNull(Alumni::where('student_id', 'FUZZY01')->first());
     }
 
+    public function test_explicit_batch_aliases_map_bice_cohorts_to_official_batches(): void
+    {
+        $b01 = Batch::factory()->create(['batch_code' => 'B01', 'batch_name' => 'Batch 01']);
+        $b03 = Batch::factory()->create(['batch_code' => 'B03', 'batch_name' => 'Batch 03']);
+
+        $rows = [
+            $this->row(2, ['student_id' => 'BICE01', 'full_name' => 'Person One', 'batch' => 'BICE-2015']),
+            $this->row(3, ['student_id' => 'BICE03', 'full_name' => 'Person Three', 'batch' => 'BICE-2017']),
+        ];
+
+        $report = $this->service->commit($rows);
+
+        $this->assertEquals(2, $report->newCount);
+        $this->assertEquals(0, $report->unknownBatchCount);
+
+        $a1 = Alumni::where('student_id', 'BICE01')->firstOrFail();
+        $this->assertEquals($b01->id, $a1->batch_id);
+
+        $a3 = Alumni::where('student_id', 'BICE03')->firstOrFail();
+        $this->assertEquals($b03->id, $a3->batch_id);
+    }
+
     public function test_an_invalid_email_format_rejects_the_row(): void
     {
         Batch::factory()->create(['batch_code' => 'B01']);

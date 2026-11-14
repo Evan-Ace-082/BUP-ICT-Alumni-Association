@@ -14,6 +14,38 @@ use Illuminate\Support\Facades\DB;
  */
 class AlumniImportService
 {
+    /**
+     * Explicit verified batch alias mapping.
+     * Maps known historical program/cohort labels (e.g. BICE-YYYY)
+     * and alternative batch notations to official database batch codes.
+     */
+    public const BATCH_ALIASES = [
+        'BICE-2015' => 'B01',
+        'BICE 2015' => 'B01',
+        'BICE-2016' => 'B02',
+        'BICE 2016' => 'B02',
+        'BICE-2017' => 'B03',
+        'BICE 2017' => 'B03',
+        'BICE-2018' => 'B04',
+        'BICE 2018' => 'B04',
+        'BICE-2019' => 'B05',
+        'BICE 2019' => 'B05',
+        'BICE-2020' => 'B06',
+        'BICE 2020' => 'B06',
+        'BICE-2021' => 'B07',
+        'BICE 2021' => 'B07',
+        'BICE-2022' => 'B08',
+        'BICE 2022' => 'B08',
+        'BATCH 1' => 'B01',
+        'BATCH 2' => 'B02',
+        'BATCH 3' => 'B03',
+        'BATCH 4' => 'B04',
+        'BATCH 5' => 'B05',
+        'BATCH 6' => 'B06',
+        'BATCH 7' => 'B07',
+        'BATCH 8' => 'B08',
+    ];
+
     /** @var array<string, Batch|null> */
     protected array $batchCache = [];
 
@@ -222,8 +254,24 @@ class AlumniImportService
             return $this->batchCache[$key];
         }
 
+        // 1. Direct match by official batch_code (e.g. 'B01') or batch_name (e.g. 'Batch 01')
         $batch = Batch::whereRaw('UPPER(batch_code) = ?', [$key])->first()
             ?? Batch::whereRaw('UPPER(batch_name) = ?', [$key])->first();
+
+        // 2. Explicit verified alias mapping (e.g. 'BICE-2017' -> 'B03')
+        if (! $batch) {
+            $aliasKey = preg_replace('/\s*-\s*/', '-', $key);
+            $aliasKey = preg_replace('/\s+/', ' ', $aliasKey);
+
+            $mappedCode = self::BATCH_ALIASES[$key]
+                ?? self::BATCH_ALIASES[$aliasKey]
+                ?? null;
+
+            if ($mappedCode) {
+                $batch = Batch::whereRaw('UPPER(batch_code) = ?', [$mappedCode])->first()
+                    ?? Batch::whereRaw('UPPER(batch_name) = ?', [$mappedCode])->first();
+            }
+        }
 
         return $this->batchCache[$key] = $batch;
     }
