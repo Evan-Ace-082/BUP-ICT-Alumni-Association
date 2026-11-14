@@ -130,6 +130,11 @@ class Alumni extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function mentorProfile(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(MentorProfile::class);
+    }
+
     public function scopeUnclaimed($query)
     {
         return $query->where('status', self::STATUS_UNCLAIMED);

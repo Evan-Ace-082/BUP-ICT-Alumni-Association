@@ -23,6 +23,9 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegistrationController::class, 'create'])->name('register');
     Route::post('/register', [RegistrationController::class, 'lookup'])->middleware('throttle:10,1');
 
+    Route::get('/register/student', [\App\Http\Controllers\Auth\StudentRegistrationController::class, 'create'])->name('register.student');
+    Route::post('/register/student', [\App\Http\Controllers\Auth\StudentRegistrationController::class, 'store'])->middleware('throttle:10,1');
+
     Route::get('/register/details', [RegistrationController::class, 'showDetails'])->name('register.details');
     Route::post('/register/details', [RegistrationController::class, 'complete'])->middleware('throttle:10,1');
 

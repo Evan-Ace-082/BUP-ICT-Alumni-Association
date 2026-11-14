@@ -11,6 +11,8 @@
 <a href="{{ route('admin.elections.index') }}" class="{{ request()->routeIs('admin.elections.*') ? 'active' : '' }}">Elections</a>
 <a href="{{ route('admin.committees.index') }}" class="{{ request()->routeIs('admin.committees.*') ? 'active' : '' }}">Executive Committees</a>
 <a href="{{ route('admin.alumni-import.index') }}" class="{{ request()->routeIs('admin.alumni-import.*') ? 'active' : '' }}">Alumni Import</a>
+<a href="{{ route('admin.mentorship.index') }}" class="{{ request()->routeIs('admin.mentorship.*') ? 'active' : '' }}">Mentorship System</a>
+<a href="{{ route('admin.students.index') }}" class="{{ request()->routeIs('admin.students.*') ? 'active' : '' }}">Student Verifications</a>
 <a href="{{ route('admin.verifications.index') }}" class="{{ request()->routeIs('admin.verifications.*') ? 'active' : '' }}">Verification Requests</a>
 <a href="{{ route('admin.alumni-verifications.index') }}" class="{{ request()->routeIs('admin.alumni-verifications.*') ? 'active' : '' }}">Alumni Verifications</a>
 @if (auth()->user()?->hasRole('super-admin'))

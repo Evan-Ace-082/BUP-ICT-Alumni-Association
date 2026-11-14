@@ -12,13 +12,13 @@ class RoleTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_role_seeder_creates_the_four_foundational_roles(): void
+    public function test_role_seeder_creates_the_foundational_roles(): void
     {
         $this->seed(RoleSeeder::class);
 
-        $this->assertDatabaseCount('roles', 4);
+        $this->assertDatabaseCount('roles', 5);
 
-        foreach (['super-admin', 'admin', 'batch-representative', 'alumni'] as $slug) {
+        foreach (['super-admin', 'admin', 'batch-representative', 'alumni', 'student'] as $slug) {
             $this->assertDatabaseHas('roles', ['slug' => $slug]);
         }
     }

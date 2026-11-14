@@ -45,6 +45,46 @@ class User extends Authenticatable
         return $this->hasOne(Alumni::class);
     }
 
+    public function student(): HasOne
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function mentorProfile(): HasOne
+    {
+        return $this->hasOne(MentorProfile::class);
+    }
+
+    public function mentorshipEligibilityOverride(): HasOne
+    {
+        return $this->hasOne(MentorshipEligibilityOverride::class);
+    }
+
+    public function sentMentorshipRequests(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MentorshipRequest::class, 'mentee_id');
+    }
+
+    public function receivedMentorshipRequests(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MentorshipRequest::class, 'mentor_id');
+    }
+
+    public function isStudent(): bool
+    {
+        return $this->hasRole('student');
+    }
+
+    public function isAlumni(): bool
+    {
+        return $this->hasRole('alumni');
+    }
+
+    public function isApprovedMentor(): bool
+    {
+        return $this->mentorProfile?->status === MentorProfile::STATUS_APPROVED;
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'role_user')->withTimestamps();

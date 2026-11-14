@@ -79,6 +79,43 @@ Route::middleware(['auth', EnsureUserIsAdmin::class])->prefix('admin')->name('ad
         Route::post('/{alumni}/reject', [\App\Http\Controllers\Admin\AlumniVerificationController::class, 'reject'])->name('reject');
     });
 
+    // Mentorship Management (Section 5, 8, 12, 13)
+    Route::prefix('mentorship')->name('mentorship.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'index'])->name('index');
+        Route::get('/applications', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'applications'])->name('applications');
+        Route::get('/applications/{mentorProfile}', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'showApplication'])->name('applications.show');
+        Route::patch('/applications/{mentorProfile}/approve', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'approveApplication'])->name('applications.approve');
+        Route::patch('/applications/{mentorProfile}/reject', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'rejectApplication'])->name('applications.reject');
+
+        Route::get('/mentors', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'mentors'])->name('mentors');
+        Route::patch('/mentors/{mentorProfile}/suspend', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'suspendMentor'])->name('mentors.suspend');
+        Route::patch('/mentors/{mentorProfile}/reactivate', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'reactivateMentor'])->name('mentors.reactivate');
+
+        Route::get('/requests', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'requests'])->name('requests');
+
+        Route::get('/categories', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'categories'])->name('categories');
+        Route::post('/categories', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'storeCategory'])->name('categories.store');
+        Route::put('/categories/{category}', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'updateCategory'])->name('categories.update');
+        Route::patch('/categories/{category}/toggle', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'toggleCategory'])->name('categories.toggle');
+        Route::post('/categories/reorder', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'reorderCategories'])->name('categories.reorder');
+
+        Route::get('/settings', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'settings'])->name('settings');
+        Route::put('/settings', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'updateSettings'])->name('settings.update');
+
+        Route::get('/overrides', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'overrides'])->name('overrides');
+        Route::post('/overrides', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'storeOverride'])->name('overrides.store');
+        Route::delete('/overrides/{override}', [\App\Http\Controllers\Admin\AdminMentorshipController::class, 'deleteOverride'])->name('overrides.destroy');
+    });
+
+    // Student Verification Management (Section 11)
+    Route::prefix('students')->name('students.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\AdminStudentController::class, 'index'])->name('index');
+        Route::get('/{student}', [\App\Http\Controllers\Admin\AdminStudentController::class, 'show'])->name('show');
+        Route::patch('/{student}/verify', [\App\Http\Controllers\Admin\AdminStudentController::class, 'verify'])->name('verify');
+        Route::patch('/{student}/reject', [\App\Http\Controllers\Admin\AdminStudentController::class, 'reject'])->name('reject');
+        Route::post('/{student}/transition', [\App\Http\Controllers\Admin\AdminStudentController::class, 'transitionToAlumnus'])->name('transition');
+    });
+
     Route::prefix('achievements')->name('achievements.')->group(function () {
         Route::get('/', [AchievementController::class, 'index'])->name('index');
         Route::patch('/{achievement}/approve', [AchievementController::class, 'approve'])->name('approve');

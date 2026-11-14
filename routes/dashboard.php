@@ -29,12 +29,28 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
     Route::post('/notifications/{notification}/read', [AnnouncementController::class, 'markRead'])->name('notifications.read');
 
-    Route::get('/mentorship', [MentorshipController::class, 'index'])->name('mentorship.index');
-    Route::post('/mentorship/{alumni}/request', [MentorshipController::class, 'sendRequest'])->name('mentorship.request');
-    Route::prefix('mentorship/requests')->name('mentorship.requests.')->group(function () {
-        Route::patch('/{mentorshipRequest}/accept', [MentorshipController::class, 'accept'])->name('accept');
-        Route::patch('/{mentorshipRequest}/reject', [MentorshipController::class, 'reject'])->name('reject');
-        Route::patch('/{mentorshipRequest}/cancel', [MentorshipController::class, 'cancel'])->name('cancel');
+    // Mentorship Routes (Redesigned)
+    Route::prefix('mentorship')->name('mentorship.')->group(function () {
+        Route::get('/', [MentorshipController::class, 'index'])->name('index');
+        Route::get('/become-a-mentor', [MentorshipController::class, 'becomeMentor'])->name('become-mentor');
+        Route::post('/become-a-mentor', [MentorshipController::class, 'storeMentorProfile'])->name('store-profile');
+        Route::get('/mentor-hub', [MentorshipController::class, 'mentorDashboard'])->name('mentor');
+        Route::get('/mentee-hub', [MentorshipController::class, 'menteeDashboard'])->name('mentee');
+        Route::put('/availability', [MentorshipController::class, 'updateAvailability'])->name('update-availability');
+        Route::put('/profile', [MentorshipController::class, 'updateProfile'])->name('update-profile');
+        Route::get('/mentors/{mentor}', [MentorshipController::class, 'show'])->name('show');
+        Route::post('/mentors/{mentor}/request', [MentorshipController::class, 'sendRequest'])->name('request.mentor');
+
+        // Legacy route compatibility for older tests
+        Route::post('/{alumni}/request', [MentorshipController::class, 'sendRequest'])->name('request');
+
+        Route::prefix('requests')->name('requests.')->group(function () {
+            Route::patch('/{mentorshipRequest}/accept', [MentorshipController::class, 'accept'])->name('accept');
+            Route::patch('/{mentorshipRequest}/decline', [MentorshipController::class, 'decline'])->name('decline');
+            Route::patch('/{mentorshipRequest}/reject', [MentorshipController::class, 'reject'])->name('reject');
+            Route::patch('/{mentorshipRequest}/cancel', [MentorshipController::class, 'cancel'])->name('cancel');
+            Route::patch('/{mentorshipRequest}/complete', [MentorshipController::class, 'complete'])->name('complete');
+        });
     });
 
     Route::prefix('achievements')->name('achievements.')->group(function () {

@@ -35,6 +35,11 @@ class RoleSeeder extends Seeder
                 'slug' => 'alumni',
                 'description' => 'Standard verified alumni member.',
             ],
+            [
+                'name' => 'Student',
+                'slug' => 'student',
+                'description' => 'Currently enrolled BUP ICT student.',
+            ],
         ];
 
         foreach ($roles as $role) {

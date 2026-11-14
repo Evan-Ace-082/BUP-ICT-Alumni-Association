@@ -22,7 +22,11 @@ class MentorshipManagementTest extends TestCase
     protected function alumniUser(bool $mentor = false): array
     {
         $user = User::factory()->create();
-        $alumni = Alumni::factory()->active()->create(['user_id' => $user->id, 'mentorship' => $mentor]);
+        $alumni = Alumni::factory()->active()->create([
+            'user_id' => $user->id,
+            'mentorship' => $mentor,
+            'graduation_year' => $mentor ? 2020 : 2024,
+        ]);
 
         return [$user, $alumni];
     }

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             BatchSeeder::class,
             AchievementCategorySeeder::class,
+            MentorshipCategorySeeder::class,
         ]);
 
         // Development-only test account. Not created in environments
